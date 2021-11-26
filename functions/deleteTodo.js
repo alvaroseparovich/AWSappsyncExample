@@ -2,6 +2,8 @@ const AWS = require('aws-sdk')
 const dynamodb = new AWS.DynamoDB()
 
 module.exports.handler = async (event) => {
+    console.log('event -> ', event)
+
     const id = event.arguments.id
 
     const params = {

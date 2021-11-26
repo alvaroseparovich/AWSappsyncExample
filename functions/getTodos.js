@@ -2,6 +2,7 @@ const AWS = require('aws-sdk')
 const dynamodb = new AWS.DynamoDB()
 
 module.exports.handler = async (event) => {
+    console.log('event -> ', event)
 
     const params = {        
         TableName: process.env.TODO_TABLE_NAME

@@ -1,8 +1,7 @@
 {
-  "name": "AWSappsyncExample",
+  "name": "aws-appsync-example",
   "version": "1.0.0",
   "description": "AWS AppSync ToDo APIs with AWS Lambda Resolvers using Serverless Framework",
-  "main": "handler.js",
   "repository": "git@github.com:alvaroseparovich/AWSappsyncExample.git",
   "author": "Alvaro Separovich <alvasepro@gmail.com>",
   "license": "GPL3",
