@@ -12,3 +12,7 @@ Implement basic ToDo APIs using AWS AppSync with AWS Lambda Resolvers by using S
 - AWS IAM
 - NodeJs
 - GraphQL
+
+-----
+
+[Authenticated request](https://docs.aws.amazon.com/appsync/latest/devguide/security-authz.html)
