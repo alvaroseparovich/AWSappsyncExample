@@ -75,22 +75,22 @@ functions:
   getTodos:
     handler: functions/getTodos.handler
     environment:
-      TODO_TABLE_NAME: !Ref TodoTable
+      TODO_TABLE_NAME: { "Ref": "TodoTable"} # Alterado de !Ref TodoTable para { "Ref": "TodoTable"} apenas para resolver problema no linter
 
   createTodo:
     handler: functions/createTodo.handler
     environment:
-      TODO_TABLE_NAME: !Ref TodoTable
+      TODO_TABLE_NAME: { "Ref": "TodoTable"} # Alterado de !Ref TodoTable para { "Ref": "TodoTable"} apenas para resolver problema no linter
 
   updateTodo:
     handler: functions/updateTodo.handler
     environment:
-      TODO_TABLE_NAME: !Ref TodoTable
+      TODO_TABLE_NAME: { "Ref": "TodoTable"} # Alterado de !Ref TodoTable para { "Ref": "TodoTable"} apenas para resolver problema no linter
 
   deleteTodo:
     handler: functions/deleteTodo.handler
     environment:
-      TODO_TABLE_NAME: !Ref TodoTable
+      TODO_TABLE_NAME: { "Ref": "TodoTable"} # Alterado de !Ref TodoTable para { "Ref": "TodoTable"} apenas para resolver problema no linter
 
 resources:
   Resources:
