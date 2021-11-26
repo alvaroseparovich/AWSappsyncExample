@@ -5,7 +5,7 @@
   "repository": "git@github.com:alvaroseparovich/AWSappsyncExample.git",
   "author": "Alvaro Separovich <alvasepro@gmail.com>",
   "license": "GPL3",
-  "dependencies": {
+  "devDependencies": {
     "serverless-appsync-plugin": "^1.12.1",
     "serverless-pseudo-parameters": "^2.6.1"
   }

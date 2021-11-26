@@ -17,9 +17,10 @@ module.exports.handler = async (event) => {
 
 
     return dynamodb.deleteItem(params).promise()
-        .then(data => {            
+        .then(data => {   
+            console.log('deleteItem -> ', data)         
             return {
-                id
+                data
             }
         })
         .catch(err => {
