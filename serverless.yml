@@ -1,0 +1,107 @@
+service: appsync-todo-apis-demo
+frameworkVersion: "2"
+
+plugins:
+   - serverless-appsync-plugin
+   - serverless-pseudo-parameters
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: us-east-1
+  lambdaHashingVersion: 20201221
+  iam:
+    role:
+      statements:
+        - Effect: "Allow"
+          Action:            
+            - "dynamodb:PutItem"
+            - "dynamodb:UpdateItem"
+            - "dynamodb:DeleteItem"
+            - "dynamodb:GetItem"
+            - "dynamodb:Scan"
+          Resource: "arn:aws:dynamodb:#{AWS::Region}:*:table/${self:custom.TODO_TABLE}"
+
+custom:      
+  TODO_TABLE: todo-table
+
+  appSync:
+    name: appsync-todo-apis-demo
+    authenticationType: API_KEY
+    mappingTemplates:      
+      - type: Mutation
+        field: createTodo
+        dataSource: createTodoFunction
+        request: false
+        response: false
+      - type: Mutation
+        field: updateTodo
+        dataSource: updateTodoFunction
+        request: false
+        response: false
+      - type: Mutation
+        field: deleteTodo
+        dataSource: deleteTodoFunction
+        request: false
+        response: false
+      - type: Query
+        field: getTodos
+        dataSource: getTodosFunction
+        request: false
+        response: false      
+    dataSources:        
+      - type: AWS_LAMBDA
+        name: createTodoFunction
+        config:
+          functionName: createTodo
+
+      - type: AWS_LAMBDA
+        name: updateTodoFunction
+        config:
+          functionName: updateTodo
+
+      - type: AWS_LAMBDA
+        name: deleteTodoFunction
+        config:
+          functionName: deleteTodo
+
+      - type: AWS_LAMBDA
+        name: getTodosFunction
+        config:
+          functionName: getTodos                     
+
+functions: 
+  getTodos:
+    handler: functions/getTodos.handler
+    environment:
+      TODO_TABLE_NAME: !Ref TodoTable
+
+  createTodo:
+    handler: functions/createTodo.handler
+    environment:
+      TODO_TABLE_NAME: !Ref TodoTable
+
+  updateTodo:
+    handler: functions/updateTodo.handler
+    environment:
+      TODO_TABLE_NAME: !Ref TodoTable
+
+  deleteTodo:
+    handler: functions/deleteTodo.handler
+    environment:
+      TODO_TABLE_NAME: !Ref TodoTable
+
+resources:
+  Resources:
+    TodoTable:
+      Type: "AWS::DynamoDB::Table"
+      Properties:
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        BillingMode: PAY_PER_REQUEST
+        TableName: ${self:custom.TODO_TABLE}
