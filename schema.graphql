@@ -4,33 +4,17 @@ schema {
 }
 
 type Query {
-    getTodos: [Get!]!
+    getTodos: [ToDo!]!
 }
 
 type Mutation {
-    createTodo(id: ID!, name: String!, description: String!): Save
-    updateTodo(id: ID!, name: String!, description: String!): Update
-    deleteTodo(id: ID!): Delete
+    createTodo(id: ID!, name: String!, description: String!): ToDo
+    updateTodo(id: ID!, name: String!, description: String!): ToDo
+    deleteTodo(id: ID!): ToDo
 }
 
-type Get {
+type ToDo {
     id: ID!
     name: String
     description: String 
-}
-
-type Save {
-    id: ID!
-    name: String
-    description: String 
-}
-
-type Update {
-    id: ID!
-    name: String
-    description: String 
-}
-
-type Delete {
-    id: ID! 
 }

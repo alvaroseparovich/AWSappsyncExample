@@ -20,7 +20,7 @@ module.exports.handler = async (event) => {
         .then(data => {   
             console.log('deleteItem -> ', data)         
             return {
-                data
+                id
             }
         })
         .catch(err => {
